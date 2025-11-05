@@ -211,19 +211,6 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para má
 
 **Desarrollado con ❤️ para la educación en algoritmos**
 
-- 📧 Email: [tu-email@ejemplo.com](mailto:tu-email@ejemplo.com)
-- 🌐 GitHub: [@tu-usuario](https://github.com/tu-usuario)
-- 💼 LinkedIn: [Tu Perfil](https://linkedin.com/in/tu-perfil)
-
-## 🙏 Agradecimientos
-
-- **Anime.js** - Por las animaciones fluidas y profesionales
-- **Tailwind CSS** - Por el sistema de estilos moderno y responsive  
-- **MDN Web Docs** - Por la documentación técnica de referencia
-- **Comunidad de Desarrolladores** - Por la inspiración y feedback continuo
-
----
-
 <div align="center">
 
 **⭐ Si este proyecto te ha sido útil, no olvides darle una estrella ⭐**
