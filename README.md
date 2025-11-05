@@ -207,6 +207,8 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para má
 
 ## 👨‍💻 Autor
 
+**ING** **Gerson Batun**
+
 **Desarrollado con ❤️ para la educación en algoritmos**
 
 - 📧 Email: [tu-email@ejemplo.com](mailto:tu-email@ejemplo.com)
