@@ -207,6 +207,7 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para má
 
 ## 👨‍💻 Autor
 
+<<<<<<< HEAD
 ING. Gerson Batun 
 
 **Desarrollado con ❤️ para la educación en algoritmos**
@@ -221,6 +222,12 @@ ING. Gerson Batun
 
 ---
 
+=======
+**ING** **Gerson Batun**
+
+**Desarrollado con ❤️ para la educación en algoritmos**
+
+>>>>>>> e49a88aef943b18257c4f44ddc7a80dbce8ae6e3
 <div align="center">
 
 **⭐ Si este proyecto te ha sido útil, no olvides darle una estrella ⭐**
@@ -232,3 +239,4 @@ ING. Gerson Batun
 ---
 
 *Última actualización: Noviembre 2025*
+# Editor-de-Codigo-Simple
