@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Algoritmos de Ordenamiento</title>
+    <meta name="description" content="Herramienta interactiva para visualizar algoritmos de ordenamiento con animaciones en tiempo real">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Anime.js para animaciones -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Configuración de Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#667eea',
+                        'secondary': '#764ba2',
+                        'accent': '#ffd700'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-500 via-purple-600 to-indigo-700 p-4 font-sans">
+    <div class="container mx-auto max-w-6xl">
+        <!-- Encabezado Principal -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+                🎯 Visualizador de Algoritmos de Ordenamiento
+            </h1>
+            <p class="text-lg text-blue-100 max-w-2xl mx-auto">
+                Explora y comprende los algoritmos de ordenamiento más populares con animaciones interactivas en tiempo real
+            </p>
+        </header>
+
+        <!-- Panel Principal -->
+        <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-6 md:p-8">
+            
+            <!-- Panel de Controles -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+                    ⚙️ Panel de Control
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
+                    <!-- Selector de Algoritmo -->
+                    <div class="space-y-2">
+                        <label for="algorithm" class="block text-sm font-medium text-gray-700">
+                            Algoritmo de Ordenamiento
+                        </label>
+                        <select id="algorithm" class="w-full px-4 py-3 border-2 border-primary rounded-xl bg-white text-primary font-medium hover:border-secondary focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all duration-300">
+                            <option value="bubble">Ordenamiento Burbuja (Bubble Sort)</option>
+                            <option value="selection">Ordenamiento por Selección (Selection Sort)</option>
+                            <option value="insertion">Ordenamiento por Inserción (Insertion Sort)</option>
+                            <option value="quick">Ordenamiento Rápido (Quick Sort)</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Tamaño del Array -->
+                    <div class="space-y-2">
+                        <label for="arraySize" class="block text-sm font-medium text-gray-700">
+                            Tamaño del Conjunto
+                        </label>
+                        <input type="number" id="arraySize" min="5" max="25" value="12" 
+                               class="w-full px-4 py-3 border-2 border-primary rounded-xl text-center font-medium hover:border-secondary focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all duration-300">
+                    </div>
+                    
+                    <!-- Velocidad de Animación -->
+                    <div class="space-y-2">
+                        <label for="speed" class="block text-sm font-medium text-gray-700">
+                            Velocidad de Animación
+                        </label>
+                        <select id="speed" class="w-full px-4 py-3 border-2 border-primary rounded-xl bg-white text-primary font-medium hover:border-secondary focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all duration-300">
+                            <option value="slow">Lento (500ms)</option>
+                            <option value="medium" selected>Medio (300ms)</option>
+                            <option value="fast">Rápido (100ms)</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Botones de Acción -->
+                    <div class="flex flex-col gap-2">
+                        <button id="generateBtn" class="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:from-green-600 hover:to-emerald-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                            🔄 Generar Nuevo Conjunto
+                        </button>
+                    </div>
+                    
+                    <div class="flex flex-col gap-2">
+                        <button id="sortBtn" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl hover:from-blue-600 hover:to-purple-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                            ▶️ Iniciar Ordenamiento
+                        </button>
+                        <button id="stopBtn" disabled class="px-6 py-3 bg-gradient-to-r from-red-500 to-rose-600 text-white font-bold rounded-xl disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed disabled:scale-100 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                            ⏹️ Detener Proceso
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Área de Visualización -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+                    📊 Visualización del Algoritmo
+                </h2>
+                <div id="visualization" class="min-h-96 bg-gradient-to-b from-gray-50 to-gray-100 rounded-2xl p-6 flex items-end justify-center gap-1 shadow-inner border-2 border-gray-200">
+                    <!-- Las barras se generarán aquí dinámicamente -->
+                </div>
+            </div>
+
+            <!-- Panel de Estadísticas -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+                    📈 Estadísticas en Tiempo Real
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-sm font-medium opacity-90">Comparaciones Realizadas</h3>
+                            <span class="text-2xl">🔍</span>
+                        </div>
+                        <p id="comparisons" class="text-3xl font-bold">0</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-6 text-white shadow-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-sm font-medium opacity-90">Intercambios Efectuados</h3>
+                            <span class="text-2xl">🔄</span>
+                        </div>
+                        <p id="swaps" class="text-3xl font-bold">0</p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white shadow-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-sm font-medium opacity-90">Tiempo Transcurrido</h3>
+                            <span class="text-2xl">⏱️</span>
+                        </div>
+                        <p id="time" class="text-3xl font-bold">0<span class="text-sm font-normal ml-1">ms</span></p>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl p-6 text-white shadow-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-sm font-medium opacity-90">Complejidad Temporal</h3>
+                            <span class="text-2xl">⚡</span>
+                        </div>
+                        <p id="complexity" class="text-2xl font-bold">O(n²)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Información del Algoritmo -->
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border-l-4 border-primary shadow-lg">
+                <div id="info" class="space-y-3">
+                    <h3 class="text-xl font-bold text-primary flex items-center gap-2">
+                        📚 Ordenamiento Burbuja (Bubble Sort)
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Compara elementos adyacentes y los intercambia si están en el orden incorrecto. 
+                        Repite este proceso hasta que el conjunto esté completamente ordenado. 
+                        Es uno de los algoritmos más simples de entender pero menos eficiente para conjuntos grandes.
+                    </p>
+                    <div class="flex flex-wrap gap-4 text-sm">
+                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">
+                            🔢 Complejidad: O(n²)
+                        </span>
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">
+                            📊 Estable: Sí
+                        </span>
+                        <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-medium">
+                            💾 Memoria: O(1)
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="text-center mt-8 text-white/80">
+            <p class="text-sm">
+                Desarrollado para el aprendizaje interactivo de algoritmos de ordenamiento • 
+                <span class="font-medium">Noviembre 2025</span>
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

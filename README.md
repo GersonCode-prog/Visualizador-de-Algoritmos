@@ -85,7 +85,7 @@ Una herramienta interactiva y educativa para visualizar y comprender algoritmos 
 
 1. **Clonar o descargar el proyecto**
    ```bash
-   git clone https://github.com/tu-usuario/visualizador-algoritmos.git
+   git clone https://github.com/GersonCode-prog/Visualizador-de-Algoritmos.git
    cd visualizador-algoritmos
    ```
 
@@ -207,11 +207,10 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para má
 
 ## 👨‍💻 Autor
 
+ING. Gerson Batun 
+
 **Desarrollado con ❤️ para la educación en algoritmos**
 
-- 📧 Email: [tu-email@ejemplo.com](mailto:tu-email@ejemplo.com)
-- 🌐 GitHub: [@tu-usuario](https://github.com/tu-usuario)
-- 💼 LinkedIn: [Tu Perfil](https://linkedin.com/in/tu-perfil)
 
 ## 🙏 Agradecimientos
 

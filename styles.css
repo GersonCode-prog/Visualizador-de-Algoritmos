@@ -1,0 +1,154 @@
+/* Visualizador de Algoritmos - Estilos Personalizados */
+
+/* Estilos para las barras de visualización */
+.bar {
+    min-width: 32px;
+    max-width: 48px;
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Estado de comparación */
+.bar.comparing {
+    background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(251, 191, 36, 0.4);
+    border-color: rgba(255, 255, 255, 0.6);
+    animation: pulse-comparing 1s infinite;
+}
+
+/* Estado ordenado */
+.bar.sorted {
+    background: linear-gradient(180deg, #10b981 0%, #059669 50%, #047857 100%);
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Estado de pivote para Quick Sort */
+.bar.pivot {
+    background: linear-gradient(180deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
+    border-color: rgba(255, 255, 255, 0.9);
+    animation: pulse-pivot 1.5s infinite;
+}
+
+/* Animaciones */
+@keyframes pulse-comparing {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes pulse-pivot {
+    0%, 100% { 
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
+    }
+    50% { 
+        transform: scale(1.15);
+        box-shadow: 0 8px 25px rgba(239, 68, 68, 0.7);
+    }
+}
+
+/* Efectos de hover mejorados */
+button:not(:disabled):hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+select:hover, input:hover {
+    transform: translateY(-1px);
+}
+
+/* Animación de carga para las barras */
+.bar-loading {
+    animation: bar-appear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes bar-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Estilos responsivos para las barras */
+@media (max-width: 768px) {
+    .bar {
+        min-width: 24px;
+        max-width: 36px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bar {
+        min-width: 20px;
+        max-width: 30px;
+        font-size: 8px;
+    }
+}
+
+/* Efecto de glassmorphism para el contenedor principal */
+.glass-container {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Animación para los elementos que aparecen */
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para el texto de información */
+.info-text {
+    line-height: 1.7;
+    text-align: justify;
+}
+
+/* Efecto de brillo para botones activos */
+.btn-shine {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-shine:hover::before {
+    left: 100%;
+}
